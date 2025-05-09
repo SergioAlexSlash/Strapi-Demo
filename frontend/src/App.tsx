@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { getCategories } from './services/api';
+import CategoryList from './components/CategoryList/CategoryList';
+import './App.css';
 
 interface Category {
   id: number;
-  attributes: {
-    name: string;
-    description: string;
-  };
+  Name: string;
 }
 
 function App() {
@@ -17,15 +16,8 @@ function App() {
   }, []);
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>Lista de Categorías</h1>
-      <ul>
-        {category.map((category) => (
-          <li key={category.id}>
-            <strong>{category.attributes.name}</strong> — {category.attributes.description}
-          </li>
-        ))}
-      </ul>
+    <div className="App">
+      <CategoryList categories={category} />
     </div>
   );
 }

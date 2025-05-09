@@ -1,10 +1,13 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_URL = 'http://localhost:1337/api';  // Cambia si Strapi está en otro dominio
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:1337/api',
+  withCredentials: true,  // Si necesitas enviar cookies
+});
 
 export const getCategories = async () => {
   try {
-    const res = await axios.get(`${API_URL}/categories`);
+    const res = await axiosInstance.get('/categories');
     return res.data.data;
   } catch (error) {
     console.error('Error fetching data', error);
